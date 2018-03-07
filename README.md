@@ -39,10 +39,10 @@ pip install pillow lxml jupyter matplotlib pandas opencv-python
 5.把 [這裡](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
 的 faster_rcnn_inception_v2_coco 下載下來並放在 research\object_detection 底下
 
-<img src="doc/faster rcnn.png">
+<img src="doc/faster rcnn.png" >
 
 6.把 object_detection\ 底下的 Training、inference_graph、images\Train、images\Test 資料夾內容全清空
-並刪除object_detection\images底下的test_labels.csv及train_labels.csv檔案。
+並刪除 object_detection\images 底下的 test_labels.csv及train_labels.csv 檔案。
 
 ### 2. 設定環境變數
 1.設定PYTHONPATH
