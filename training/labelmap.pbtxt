@@ -1,0 +1,29 @@
+item {
+  id: 1
+  name: 'beverage'
+}
+
+item {
+  id: 2
+  name: 'charizard'
+}
+
+item {
+  id: 3
+  name: 'frenchcookie'
+}
+
+item {
+  id: 4
+  name: 'lucci'
+}
+
+item {
+  id: 5
+  name: 'redbox'
+}
+
+item {
+  id: 6
+  name: 'shit'
+}
