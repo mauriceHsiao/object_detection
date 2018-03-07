@@ -32,11 +32,16 @@ pip install pillow lxml jupyter matplotlib pandas opencv-python
 ```
 
 4.在C:\ 建立個tensorflow資料夾，把 [這個](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10) 與 [這個](https://github.com/tensorflow/models)
-的repository下載下來放進來，並把 EdjeElectronics 這個作者的repository放至自己C:\tensorflow\models\research\object_detection路徑底下。
+的repository下載下來放進來，並把 EdjeElectronics 這個作者的repository放至自己C:\tensorflow\models\research\object_detection 路徑底下。
 
 <img src="doc/img.png">
 
-5.把 object_detection\ 底下的 Training、inference_graph、images\Train、images\Test 資料夾內容全清空
+5.把 [這裡](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md)
+的 faster_rcnn_inception_v2_coco 下載下來並放在 research\object_detection 底下
+
+<img src="doc/faster rcnn.png">
+
+6.把 object_detection\ 底下的 Training、inference_graph、images\Train、images\Test 資料夾內容全清空
 並刪除object_detection\images底下的test_labels.csv及train_labels.csv檔案。
 
 ### 2. 設定環境變數
