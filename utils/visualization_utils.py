@@ -171,16 +171,20 @@ def draw_bounding_box_on_image(image,
   draw.line([(left, top), (left, bottom), (right, bottom),
              (right, top), (left, top)], width=thickness, fill=color)
   try:
-    font = ImageFont.truetype('arial.ttf', 24)
+    # default 24
+    font = ImageFont.truetype('arial.ttf', 18)
   except IOError:
     font = ImageFont.load_default()
 
   # If the total height of the display strings added to the top of the bounding
   # box exceeds the top of the image, stack the strings below the bounding box
   # instead of above.
+  # get label name size
   display_str_heights = [font.getsize(ds)[1] for ds in display_str_list]
   # Each display_str has a top and bottom margin of 0.05x.
   total_display_str_height = (1 + 2 * 0.05) * sum(display_str_heights)
+  # label name
+  print("label=",display_str_list[0])
 
   if top > total_display_str_height:
     text_bottom = top
@@ -190,13 +194,40 @@ def draw_bounding_box_on_image(image,
   for display_str in display_str_list[::-1]:
     text_width, text_height = font.getsize(display_str)
     margin = np.ceil(0.05 * text_height)
+    # label area height
     draw.rectangle(
-        [(left, text_bottom - text_height - 2 * margin), (left + text_width,
-                                                          text_bottom)],
+        [(left, text_bottom - text_height - 2 * margin)
+            , (right,text_bottom)],
         fill=color)
+    # label text
     draw.text(
         (left + margin, text_bottom - text_height - margin),
         display_str,
+        fill='black',
+        font=font)
+    # left top
+    lt_text_width, lt_text_height = font.getsize((str(int(left))+','+str(int(top))))
+    draw.text(
+        (left - lt_text_width - 2 * margin, top - text_height),
+        (str(int(left))+','+str(int(top))),
+        fill='black',
+        font=font)
+    # left bottom
+    draw.text(
+        (left - lt_text_width - 2 * margin, bottom - text_height),
+        (str(int(left))+','+str(int(bottom))),
+        fill='black',
+        font=font)
+    # right top
+    draw.text(
+        (right + margin, top),
+        (str(int(right))+','+str(int(top))),
+        fill='black',
+        font=font)
+    # right bottom
+    draw.text(
+        (right + margin, bottom),
+        (str(int(right))+','+str(int(bottom))),
         fill='black',
         font=font)
     text_bottom -= text_height - 2 * margin
@@ -615,7 +646,8 @@ def visualize_boxes_and_labels_on_image_array(
           if not display_str:
             display_str = '{}%'.format(int(100*scores[i]))
           else:
-            display_str = '{}: {}%'.format(display_str, int(100*scores[i]))
+            #print('class name = {}; scores = {:2.2f}%'.format(display_str, float(100 * scores[i])))
+            display_str = '{}: {:2.2f}%'.format(display_str, float(100*scores[i]))
         box_to_display_str_map[box].append(display_str)
         if agnostic_mode:
           box_to_color_map[box] = 'DarkOrange'
@@ -656,7 +688,12 @@ def visualize_boxes_and_labels_on_image_array(
           color=color,
           radius=line_thickness / 2,
           use_normalized_coordinates=use_normalized_coordinates)
-
+    print("ymin, xmin, ymax, xmax = ",ymin, xmin, ymax, xmax)
+    im_height, im_width, channels = image.shape
+    (left, right, top, bottom) = (xmin * im_width, xmax * im_width,
+                                  ymin * im_height, ymax * im_height)
+    print("left, right, top, bottom=",left, right, top, bottom)
+    print('--------------------------------------')
   return image
 
 

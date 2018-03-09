@@ -31,7 +31,7 @@ from utils import visualization_utils as vis_util
 
 # Name of the directory containing the object detection module we're using
 MODEL_NAME = 'inference_graph'
-IMAGE_NAME = 'test1.jpg'
+IMAGE_NAME = 'test/002.jpg'
 
 # Grab path to current working directory
 CWD_PATH = os.getcwd()
@@ -96,8 +96,15 @@ image_expanded = np.expand_dims(image, axis=0)
 (boxes, scores, classes, num) = sess.run(
     [detection_boxes, detection_scores, detection_classes, num_detections],
     feed_dict={image_tensor: image_expanded})
+# print("boxes=",boxes[0])
+# print("boxes=",len(boxes[0]))
+# print("scores=",len(scores[0]))
+# print("classes=",classes)
+# print("num=",num)
 
 # Draw the results of the detection (aka 'visulaize the results')
+# height, width, channels = image.shape
+# print(height, width, channels)
 
 vis_util.visualize_boxes_and_labels_on_image_array(
     image,
@@ -109,6 +116,12 @@ vis_util.visualize_boxes_and_labels_on_image_array(
     line_thickness=8,
     min_score_thresh=0.80)
 
+# print("np.squeeze(boxes)=",np.squeeze(boxes))
+# print("np.squeeze(classes).astype(np.int32)=",np.squeeze(classes).astype(np.int32))
+# print("np.squeeze(scores)=",np.squeeze(scores))
+# print("category_index=",category_index)
+#
+# print(image)
 # All the results have been drawn on image. Now display the image.
 cv2.imshow('Object detector', image)
 

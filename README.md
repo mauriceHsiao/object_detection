@@ -268,6 +268,32 @@ Demo：
 
 <img src="doc/gpuz2.png" >
 
+
+# ERROR
+1.No module named 'object_detection'
+
+[Answer](https://github.com/tensorflow/models/issues/2031)
+
+2.ImportError: No module named deployment
+
+[Answer](https://github.com/tensorflow/models/issues/1992)
+
+3.TypeError: __init__() got an unexpected keyword argument 'dct_method'
+
+[Answer](https://github.com/tensorflow/models/issues/3476)
+
+4.TypeError: Expected int32, got range(0, 3) of type 'range' instead.
+
+[Answer](https://github.com/tensorflow/models/issues/3443)
+
+5.Loaded runtime CuDNN library: 7005 (compatibility version 7000)
+but source was compiled with 7101 (compatibility version 7100).
+If using a binary install, upgrade your CuDNN library to match.
+If building from sources, make sure the library loaded at runtime matches a compatible version specified during compile configuration.
+
+Answer:install libcudnn 7.0.5
+[Answer](https://github.com/tensorflow/tensorflow/issues/17422)
+
 # 致謝
 最後，本專案只是把 EdjeElectronics 作者的 [這篇](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
 實作出來，並把步驟記錄起來，實際上在 run 的時候會有需多問題，可以參考 [這篇](https://www.youtube.com/watch?v=Rgpfk6eYxJA)
